@@ -39,4 +39,8 @@ x_res,y_res = smote.fit_resample(df.drop('Class',axis=1),df['Class'])
 #Data after balancing
 df_new = pd.concat([x_res,y_res],axis=1)
 
-#Saving the data balanced
+#Saving the data balanced, taking aleatory 40000 samples
+
+df_sample = df_new.sample(40000)
+
+df_sample.to_parquet('data//creditcard_balanced.parquet',engine='pyarrow')
